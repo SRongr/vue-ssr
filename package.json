@@ -1,0 +1,39 @@
+{
+  "name": "vue_ssr",
+  "version": "1.0.0",
+  "description": "vue-ssr 基本框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "npm run dev && npm run build",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "NODE_ENV=production webpack --config webpack/webpack.client.js --progress --hide-modules --watch",
+    "build:server": "NODE_ENV=production webpack --config webpack/webpack.server.js --progress --hide-modules --watch"
+  },
+  "author": "SRongr",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.4.0",
+    "autoprefixer": "^9.5.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
+    "babel-polyfill": "^6.26.0",
+    "css-loader": "^2.1.1",
+    "express": "^4.16.4",
+    "postcss-loader": "^3.0.0",
+    "pug": "^2.0.3",
+    "pug-html-loader": "^1.1.5",
+    "style-loader": "^0.23.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.2.6",
+    "vue-router": "^3.0.2",
+    "vue-server-renderer": "^2.6.10",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
