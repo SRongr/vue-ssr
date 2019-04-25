@@ -4,6 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const isProd = process.env.NODE_ENV === 'production'
 const postcssConfig = require('./postcss.config')
+
 module.exports = {
   output: {
     path: path.resolve(__dirname, `../dist/`),
@@ -42,7 +43,12 @@ module.exports = {
         options: {
           name: 'img/[name].[hash:8].[ext]'    //自动hash命名图片等资源，并修改路径。路径需要根据项目实际情况确定。语法参考：https://doc.webpack-china.org/loaders/file-loader/
         }
-      }
+      },
+      {
+        test: /\.pug$/,
+        exclude: /node_modules/,
+        loader: 'pug-html-loader'
+      },
     ]
   },
   resolve: {
@@ -55,6 +61,7 @@ module.exports = {
     hints: false
   },
   plugins: isProd ? [
+    new VueLoaderPlugin(),
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {
@@ -69,7 +76,7 @@ module.exports = {
       parallel: true // 使用多进程并行运行来提高构建速度
     })
   ] : [
-    // new VueLoaderPlugin()
+    new VueLoaderPlugin()
   ],
   devtool: '#eval-source-map'
 };
