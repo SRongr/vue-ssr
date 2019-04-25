@@ -8,8 +8,8 @@ module.exports = merge(base, {
     devtool: '#source-map',
     entry: './web/pages/entry-server.js',
     output: {
-        filename: `[name].[hash:8].js`,
-        libraryTarget: 'commonjs2'
+      filename: 'server-bundle.js',
+      libraryTarget: 'commonjs2'
     },
     plugins: [
         new webpack.DefinePlugin({

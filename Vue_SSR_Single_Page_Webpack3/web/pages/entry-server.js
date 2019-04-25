@@ -7,7 +7,7 @@ export default context => new Promise((reslove, rejects) => {
   router.push(context.url)
   const matchComponents = app.$router.getMatchedComponents()
   if (matchComponents.length === 0) {
-    rejects({code: 404})
+    rejects({code: 404,url: context.url,matchComponents})
   }
   Promise.all(matchComponents.map(component => {
     if(component.serverRequest) {
@@ -17,6 +17,6 @@ export default context => new Promise((reslove, rejects) => {
     reslove(app)
     context.state = store.state
   }).catch(err => {
-    console.log(err)
+    console.log(err,12312)
   })
 })

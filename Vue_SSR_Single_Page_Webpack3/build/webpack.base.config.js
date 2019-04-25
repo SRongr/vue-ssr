@@ -3,11 +3,13 @@ var webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const isProd = process.env.NODE_ENV === 'production'
+const postcssConfig = require('./postcss.config')
 module.exports = {
   output: {
     path: path.resolve(__dirname, `../dist/`),
     publicPath: '/dist/',       //发布后在线访问的url
-    filename: `[name].[hash:8].js`   //'[name].[chunkhash].js', '[name].[hash:8].js'
+    filename: `js/[name].[hash:8].js`,   //'[name].[chunkhash].js', '[name].[hash:8].js'
+    chunkFilename: 'js/[name].[chunkhash].js'
   },
   module: {
     rules: [
@@ -15,7 +17,8 @@ module.exports = {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          'css-loader'
+          'css-loader',
+          postcssConfig
         ],
       }, {
         test: /\.vue$/,
@@ -23,13 +26,14 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        // loader: 'babel-loader',
-        // exclude: /node_modules/
+        exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env']
-          }
+            presets: ['env'],
+            plugins:['syntax-dynamic-import'],
+          },
+          
         },
       },
       {
@@ -65,7 +69,7 @@ module.exports = {
       parallel: true // 使用多进程并行运行来提高构建速度
     })
   ] : [
-    new VueLoaderPlugin()
+    // new VueLoaderPlugin()
   ],
   devtool: '#eval-source-map'
 };
