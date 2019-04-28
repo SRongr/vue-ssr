@@ -1,6 +1,3 @@
-/**
- * Created by kenkozheng on 2017/11/27.
- */
 
 const fs = require('fs');
 const path = require('path');
@@ -27,7 +24,6 @@ const createRenderer = (bundle, options) => createBundleRenderer(bundle, Object.
 let render;
 const templatePath = resolve('../web/tpl.html');
 let baseRender = (renderer, req, res) => {
-  //context是一个对象，在模版中，使用<title>{{ title }}</title>方式填充 https://ssr.vuejs.org/zh/basic.html
   let context = { title: 'VueSSR Multipages', url: req.url };
   renderer.renderToString(context, (err, html) => {
     const state = JSON.stringify(context.state)
@@ -83,7 +79,7 @@ server.get('/api/getValue', (req,res) => {
 })
 server.get('*', render);
 
-const port = 80;
+const port = 8080;
 server.listen(port, () => {
   console.log(`server started at localhost:${port}`)
 });

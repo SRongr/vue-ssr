@@ -12,6 +12,13 @@ module.exports = {
     filename: `js/[name].[hash:8].js`,   //'[name].[chunkhash].js', '[name].[hash:8].js'
     chunkFilename: 'js/[name].[chunkhash].js'
   },
+  resolve: {
+    alias: {
+      // 'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve(__dirname, '../web'),
+    },
+    extensions: ['*', '.js', '.vue', '.json']
+  },
   module: {
     rules: [
       {
@@ -34,11 +41,11 @@ module.exports = {
             presets: ['env'],
             plugins:['syntax-dynamic-import'],
           },
-          
         },
+       
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|jpeg)$/,
         loader: 'file-loader',
         options: {
           name: 'img/[name].[hash:8].[ext]'    //自动hash命名图片等资源，并修改路径。路径需要根据项目实际情况确定。语法参考：https://doc.webpack-china.org/loaders/file-loader/
@@ -50,12 +57,6 @@ module.exports = {
         loader: 'pug-html-loader'
       },
     ]
-  },
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['*', '.js', '.vue', '.json']
   },
   performance: {
     hints: false

@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <img src="../img/logo.png">
+    <!-- <img src="../img/logo.png"> -->
+    <!-- dada -->
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <h2>page121202123</h2> -->
-    <router-link to="/">home</router-link>
+    <!-- <router-link to="/">home</router-link>
     <router-link to="/about">about</router-link>
-    <router-link to="/blog">blog</router-link>
+    <router-link to="/blog">blog</router-link> -->
     <router-view></router-view>
   </div>
 </template>
