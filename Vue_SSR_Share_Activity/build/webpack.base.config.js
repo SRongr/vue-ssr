@@ -5,6 +5,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const config = require('../config')
+const postcssConfig = require('./postcss.config')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -67,7 +68,7 @@ module.exports = {
         loader: 'pug-html-loader'
       },
       {
-        test: /\.styl(us)?$/,
+        test: /\.(css|styl(us)?)$/,
         use: isProd
           ? ExtractTextPlugin.extract({
               use: [
@@ -75,11 +76,12 @@ module.exports = {
                   loader: 'css-loader',
                   options: { minimize: true }
                 },
+                postcssConfig,
                 'stylus-loader'
               ],
               fallback: 'vue-style-loader'
             })
-          : ['vue-style-loader', 'css-loader', 'stylus-loader']
+          : ['vue-style-loader', 'css-loader', postcssConfig, 'stylus-loader']
       }
     ]
   },
