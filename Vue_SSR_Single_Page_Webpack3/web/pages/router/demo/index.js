@@ -6,25 +6,30 @@ import blog from './component/blog.vue'
 // const about = () => import(/* webpackChunkName:'about'*/ '@/pages/router/demo/component/about.vue')
 // const blog = () => import(/* webpackChunkName:'blog'*/ '@/pages/router/demo/component/blog.vue')
 
-const route = [
+
+const routes = [
   {
     path: '/',
-    component: home
-},
-{
-  path: '/home',
-  component: home
-},
-{
+    component: home,
+    meta: 'home'
+  },
+  {
+    path: '/home',
+    component: home,
+    meta: 'home'
+  },
+  {
     path: '/about',
-    component: about 
-},
-{
+    component: about,
+    meta: 'about'
+  },
+  {
     path: '/blog',
-    component: blog
-}
+    component: blog,
+    meta: 'blog'
+  }
 
 ]
 
 
-export default route
+export default routes

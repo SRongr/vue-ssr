@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const isProd = process.env.NODE_ENV === 'production'
@@ -75,7 +76,11 @@ module.exports = {
       },
       sourceMap: false,
       parallel: true // 使用多进程并行运行来提高构建速度
-    })
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+        new ExtractTextPlugin({
+          filename: 'css/common.[chunkhash].css'
+        })
   ] : [
     new VueLoaderPlugin()
   ],

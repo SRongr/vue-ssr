@@ -29,6 +29,7 @@ let baseRender = (renderer, req, res) => {
     const state = JSON.stringify(context.state)
     // console.log(state)
     if (err) {
+      console.log(err)
       res.status(err.code).end('Internal Server Error');
       return
     }

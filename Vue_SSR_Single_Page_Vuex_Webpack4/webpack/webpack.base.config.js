@@ -10,9 +10,16 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
-        test: /\.js$/,            
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            // presets: ['env'],
+            plugins:['syntax-dynamic-import'],
+          },
+        },
+       
       },
       {
         test: /\.(css|styl(us)?)$/,         // 注意顺序
