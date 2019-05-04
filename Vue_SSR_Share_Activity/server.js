@@ -10,7 +10,6 @@ const { createBundleRenderer } = require('vue-server-renderer')
 const cookieparser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
-const routes = require('./routes')
 
 const isProd = process.env.NODE_ENV === 'production'
 const useMicroCache = process.env.MICRO_CACHE !== 'false'
@@ -133,8 +132,6 @@ function render (req, res) {
   })
 }
 
-// express路由，pug engine
-app.use('/app', routes)
 
 app.get('*', isProd ? render : (req, res) => {
   readyPromise.then(() => render(req, res))
