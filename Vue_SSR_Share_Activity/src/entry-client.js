@@ -57,6 +57,7 @@ router.onReady(() => {
 
   // actually mount to DOM
   app.$mount('#app')
+  console.log(app)
 })
 
 // service worker
