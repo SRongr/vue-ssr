@@ -19,7 +19,7 @@
     "babel-loader": "^8.0.5",
     "babel-polyfill": "^6.26.0",
     "css-loader": "^2.1.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "postcss-loader": "^3.0.0",
     "pug": "^2.0.3",
     "pug-html-loader": "^1.1.5",
